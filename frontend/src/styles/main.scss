@@ -1,0 +1,23 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+$mindaro: #C5D86D;
+$licorice: #261615;
+$baby-powder: #F7F7F2;
+$beige: #E4E6C3;
+$giants-orange: #F05D23;
+
+$main-background-color: $baby-powder;
+$main-font-family: 'Righteous', cursive;
+
+* {
+    font-family: $main-font-family;
+    background-color:$main-background-color;
+}
+
+
+.navbar {
+    font-size: 50px;
+    width: 100%;
+    height: 80px;
+}
