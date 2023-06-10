@@ -5,6 +5,7 @@ $licorice: #261615;
 $baby-powder: #F7F7F2;
 $beige: #E4E6C3;
 $giants-orange: #F05D23;
+$cadet-gray: #9CAFB7;
 
 $main-background-color: $baby-powder;
 $main-font-color: $licorice;
@@ -94,4 +95,14 @@ $main-font-family: 'Fenix', serif;
             @include border($main-font-color);
         }
     }
+
+    .noTexts {
+        margin-top: 80px;
+        p {
+            font-size: 20px;
+            text-align: center;
+            color: $cadet-gray;
+        }
+    }
+
 }
