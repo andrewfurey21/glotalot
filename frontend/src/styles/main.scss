@@ -1,6 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fenix&display=swap');
 $mindaro: #C5D86D;
 $licorice: #261615;
 $baby-powder: #F7F7F2;
@@ -9,7 +8,7 @@ $giants-orange: #F05D23;
 
 $main-background-color: $baby-powder;
 $main-font-color: $licorice;
-$main-font-family: 'Righteous', cursive;
+$main-font-family: 'Fenix', serif;
 
 
 @mixin border($color) {
@@ -33,7 +32,7 @@ $main-font-family: 'Righteous', cursive;
     margin-left: 20vw;
 
     .navbar {
-        $navbar-font-size: 35px;
+        $navbar-font-size: 45px;
         $navbar-icon-dim: 30px;
 
         margin-top: 20px;
@@ -41,14 +40,12 @@ $main-font-family: 'Righteous', cursive;
         padding: 20px;
 
         display: flex;
-        justify-content: space-between;
 
         font-size: $navbar-font-size;
         color: $main-font-color;
         @include border($main-font-color);
 
         .logo {
-            justify-self: flex-start;
             a {
                 color: inherit;
                 text-decoration: none;
@@ -56,10 +53,10 @@ $main-font-family: 'Righteous', cursive;
         }
 
         .activities {
-            justify-self: center;
             flex-grow: 1;
             display: flex;
             padding-left: 25px;
+
             .activitiesImage {
                 padding-right: 20px;
                 margin: auto;
@@ -69,11 +66,32 @@ $main-font-family: 'Righteous', cursive;
         }
 
         .profileIcon {
-            justify-self: flex-end;
             font-weight: 30px;
             width: $navbar-icon-dim;
             height: $navbar-icon-dim;
         }
 
+    }
+
+    .textHeader {
+        font-size: 30px;
+        margin: 20px 20px 0px 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .textHeaderTitle {
+            flex-grow: 1;
+            margin: auto;
+            margin-left: 20px;
+        }
+
+        .addTextButton {
+            color: $main-background-color;
+            background-color: $main-font-color;
+            margin: auto;
+            margin-right: 20px;
+            padding: 10px;
+            @include border($main-font-color);
+        }
     }
 }
