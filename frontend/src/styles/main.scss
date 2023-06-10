@@ -27,50 +27,53 @@ $main-font-family: 'Righteous', cursive;
     background-color:$main-background-color;
 }
 
+.app {
 
-.navbar {
-    $navbar-font-size: 35px;
-    $navbar-icon-dim: 30px;
-
-    margin-top: 20px;
     margin-right: 20vw;
     margin-left: 20vw;
 
-    padding: 20px;
+    .navbar {
+        $navbar-font-size: 35px;
+        $navbar-icon-dim: 30px;
 
-    display: flex;
-    justify-content: space-between;
+        margin-top: 20px;
 
-    font-size: $navbar-font-size;
-    color: $main-font-color;
-    @include border($main-font-color);
+        padding: 20px;
 
-    .logo {
-        justify-self: flex-start;
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-    }
-
-    .activities {
-        justify-self: center;
-        flex-grow: 1;
         display: flex;
-        padding-left: 20px;
-        .activitiesImage {
-            padding-right: 20px;
-            margin: auto;
+        justify-content: space-between;
+
+        font-size: $navbar-font-size;
+        color: $main-font-color;
+        @include border($main-font-color);
+
+        .logo {
+            justify-self: flex-start;
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+
+        .activities {
+            justify-self: center;
+            flex-grow: 1;
+            display: flex;
+            padding-left: 25px;
+            .activitiesImage {
+                padding-right: 20px;
+                margin: auto;
+                width: $navbar-icon-dim;
+                height: $navbar-icon-dim;
+            }
+        }
+
+        .profileIcon {
+            justify-self: flex-end;
+            font-weight: 30px;
             width: $navbar-icon-dim;
             height: $navbar-icon-dim;
         }
-    }
 
-    .profileIcon {
-        justify-self: flex-end;
-        font-weight: 30px;
-        width: $navbar-icon-dim;
-        height: $navbar-icon-dim;
     }
-
 }
