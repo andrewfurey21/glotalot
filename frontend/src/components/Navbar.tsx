@@ -1,5 +1,5 @@
-import React from 'react'
-import "../styles/main.scss"
+import React from 'react';
+import "../styles/main.scss";
 import BookIcon from "../assets/book.svg";
 import VideoIcon from "../assets/video.svg";
 import ProfileIcon from "../assets/profile.svg";
