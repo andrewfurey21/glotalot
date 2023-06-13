@@ -1,5 +1,4 @@
 import "../styles/main.scss";
-import { NoTexts } from "./NoTexts";
 
 export function TextHeader() {
     return (
