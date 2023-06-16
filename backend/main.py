@@ -13,18 +13,6 @@ middlewares = [
 
 app = FastAPI(middleware=middlewares)
 
-# with open('../../../italia/anello.txt') as f:
-#     lines = f.readlines()
-#
-# client = MongoClient('localhost', 27017)
-
-# db = client.test_database
-#
-# article = {"title": "La Compagna dell'Anello", "text": lines}
-#
-# articles = db.articles
-#
-# articles.insert_one(article)
 
 @app.get("/")
 async def root():
