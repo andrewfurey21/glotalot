@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 
+from database import *
+
 middlewares = [
      Middleware(
          CORSMiddleware,
@@ -18,9 +20,14 @@ app = FastAPI(middleware=middlewares)
 async def root():
     return {"message": "Hello World"}
 
-@app.get("/create")
-async def create_text():
-    return {"message": "creating text"}
-
-async def read_text():
+@app.post("/upload")
+async def create_text(text: TextModel):
     pass
+    # return {**text.dict()}
+
+async def get_text():
+    pass
+
+@app.get("/texts")
+async def get_texts():
+    return get_text_descriptions()
