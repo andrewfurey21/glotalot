@@ -1,5 +1,6 @@
 import "../styles/main.scss";
 import BookIcon from "../assets/book.svg";
+import ChatIcon from "../assets/chat.svg";
 import VideoIcon from "../assets/video.svg";
 import ProfileIcon from "../assets/profile.svg";
 
@@ -17,6 +18,9 @@ export function Navbar() {
                </div>
                <div>
                    <img className="activitiesImage" src={VideoIcon} alt="video"/>
+               </div>
+               <div>
+                   <img className="activitiesImage" src={ChatIcon} alt="video"/>
                </div>
             </div>
 
