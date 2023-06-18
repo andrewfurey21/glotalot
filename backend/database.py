@@ -4,6 +4,7 @@ from dataclasses import dataclass, asdict
 from datetime import date
 
 from constants import *
+from uuid import uuid4
 
 @dataclass
 class TextModel():
@@ -51,5 +52,5 @@ def update_text_info(title, completion_perc):
 
 
 if __name__ == "__main__":
-    text = TextModel("example text", "some more text", .5, 3)
+    text = TextModel("example text", "some more text", .5, 3, uuid4())
     add_text(text)

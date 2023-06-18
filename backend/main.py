@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from database import *
 import uuid
+from pydantic import BaseModel
 
 middlewares = [
      Middleware(
@@ -21,13 +22,17 @@ app = FastAPI(middleware=middlewares)
 async def root():
     return {}
 
-@app.post("/upload")
-async def create_text(title, text):
-    length = len(text)
+class TextDescription(BaseModel):
+    text: str
+    title: str
+
+@app.post("/upload/")
+async def create_text(text_desc: TextDescription):
+    length = len(text_desc.text.split(" "))
     id = uuid.uuid4()
-    data = TextModel(title, text, 0, length, id)
+    data = TextModel(text_desc.title, text_desc.text, 0, length, id)
     add_text(data)
 
 @app.get("/texts")
 async def get_texts():
-    return get_text_information()
+    return get_text_info()
