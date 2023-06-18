@@ -18,16 +18,13 @@ app = FastAPI(middleware=middlewares)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {}
 
 @app.post("/upload")
 async def create_text(text: TextModel):
     pass
     # return {**text.dict()}
 
-async def get_text():
-    pass
-
 @app.get("/texts")
 async def get_texts():
-    return get_text_descriptions()
+    return get_text_information()

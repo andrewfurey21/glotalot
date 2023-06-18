@@ -10,7 +10,7 @@ class TextModel():
     completion_perc: float
     words: int
 
-def get_text_descriptions():
+def get_text_information():
     client = MongoClient('localhost', 27017)
     db = client.database
     texts = db['collection']
@@ -20,6 +20,7 @@ def get_text_descriptions():
     for text in texts.find():
         description = {
             "name": text["name"],
+            "text": text["text"],
             "completion_perc": text["completion_perc"],
             "words": text["words"]
         }
@@ -27,11 +28,6 @@ def get_text_descriptions():
         descriptions.append(description)
 
     return descriptions
-
-
-
-def get_text():
-    pass
 
 def add_text(text: TextModel):
     client = MongoClient('localhost', 27017)
