@@ -3,6 +3,7 @@ from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 
 from database import *
+import uuid
 
 middlewares = [
      Middleware(
@@ -21,9 +22,11 @@ async def root():
     return {}
 
 @app.post("/upload")
-async def create_text(text: TextModel):
-    pass
-    # return {**text.dict()}
+async def create_text(title, text):
+    length = len(text)
+    id = uuid.uuid4()
+    data = TextModel(title, text, 0, length, id)
+    add_text(data)
 
 @app.get("/texts")
 async def get_texts():

@@ -7,24 +7,28 @@ from constants import *
 
 @dataclass
 class TextModel():
-    name: str
+    title: str
     text: str
     completion_perc: float
     words: int
+    id: str
 
-def get_text_information():
+def get_texts_from_db():
     client = MongoClient(NAME, PORT)
-    db = client.database
-    texts = db[TEXT_COLLECTION_NAME]
+    db = client[TEXT_DATABASE_NAME]
+    return db[TEXT_COLLECTION_NAME]
 
+def get_text_info():
+    texts = get_texts_from_db()
     descriptions = []
 
     for text in texts.find():
         description = {
-            "name": text["name"],
+            "title": text["title"],
             "text": text["text"],
             "completion_perc": text["completion_perc"],
-            "words": text["words"]
+            "words": text["words"],
+            "id": text["id"]
         }
 
         descriptions.append(description)
@@ -32,11 +36,19 @@ def get_text_information():
     return descriptions
 
 def add_text(text: TextModel):
-    client = MongoClient(NAME, PORT)
-    db = client.database
-    texts = db['collection']
+    texts = get_texts_from_db()
     data = asdict(text)
     texts.insert_one(data)
+
+def delete_text(id: str):
+    texts = get_texts_from_db()
+    texts.delete_one({"id": id})
+
+def update_text_info(title, completion_perc):
+    texts = get_texts_from_db()
+    text.update_one({'title': title}, {"$set": {"title": title, "completion_perc": completion_perc}})
+
+
 
 if __name__ == "__main__":
     text = TextModel("example text", "some more text", .5, 3)
