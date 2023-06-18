@@ -3,6 +3,8 @@ from pymongo import MongoClient
 from dataclasses import dataclass, asdict
 from datetime import date
 
+from constants import *
+
 @dataclass
 class TextModel():
     name: str
@@ -11,9 +13,9 @@ class TextModel():
     words: int
 
 def get_text_information():
-    client = MongoClient('localhost', 27017)
+    client = MongoClient(NAME, PORT)
     db = client.database
-    texts = db['collection']
+    texts = db[TEXT_COLLECTION_NAME]
 
     descriptions = []
 
@@ -30,7 +32,7 @@ def get_text_information():
     return descriptions
 
 def add_text(text: TextModel):
-    client = MongoClient('localhost', 27017)
+    client = MongoClient(NAME, PORT)
     db = client.database
     texts = db['collection']
     data = asdict(text)
