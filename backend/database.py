@@ -1,3 +1,4 @@
+import sys
 
 from pymongo import MongoClient
 from dataclasses import dataclass, asdict
@@ -52,5 +53,7 @@ def update_text_info(title, completion_perc):
 
 
 if __name__ == "__main__":
-    text = TextModel("example text", "some more text", .5, 3, uuid4())
-    add_text(text)
+    arg = sys.argv[1]
+    if arg == "clear":
+        print("Clearing database.")
+        get_texts_from_db().drop()
