@@ -74,39 +74,45 @@ $main-font-family: 'Fenix', serif;
 
     }
 
-    .textHeader {
-        font-size: 30px;
-        margin: 20px 20px 0px 20px;
-        display: flex;
-        justify-content: space-between;
+    .textsPage {
+        .textHeader {
+            font-size: 30px;
+            margin: 20px 20px 0px 20px;
+            display: flex;
+            justify-content: space-between;
 
-        .textHeaderTitle {
-            flex-grow: 1;
-            margin: auto;
-            margin-left: 20px;
+            .textHeaderTitle {
+                flex-grow: 1;
+                margin: auto;
+                margin-left: 20px;
+            }
+
+            .addTextButton {
+                color: $main-background-color;
+                background-color: $main-font-color;
+                margin: auto;
+                margin-right: 20px;
+                padding: 10px;
+                @include border($main-font-color);
+            }
         }
 
-        .addTextButton {
-            color: $main-background-color;
-            background-color: $main-font-color;
-            margin: auto;
-            margin-right: 20px;
-            padding: 10px;
-            @include border($main-font-color);
+        .noTexts {
+            margin-top: 80px;
+            p {
+                font-size: 20px;
+                text-align: center;
+                color: $cadet-gray;
+            }
+        }
+
+        .textDescriptionCards {
+            .testDescriptionCard {
+                display: flex;
+            }
+
         }
     }
 
-    .noTexts {
-        margin-top: 80px;
-        p {
-            font-size: 20px;
-            text-align: center;
-            color: $cadet-gray;
-        }
-    }
-
-    .textDescription {
-        display: flex;
-    }
 
 }
