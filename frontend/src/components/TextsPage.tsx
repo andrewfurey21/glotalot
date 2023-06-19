@@ -1,25 +1,45 @@
+import React from 'react'
+import axios from 'axios'
 
 import { NoTexts } from "./NoTexts";
 import { TextHeader } from './TextHeader';
-import axios from 'axios'
+import { TextDescription, TextDescriptionCard } from "./TextDescription";
+
 
 export function TextsPage() {
-    const getTextDescriptions = async() => {
-        axios.get('/texts')
-             .then(function (response) {
-                 console.log(response);
-             })
-             .catch(function (error) {
-                 console.log(error);
-             })
-      };
 
-    getTextDescriptions();
+    let [textDescriptions, setTextDescriptions] = React.useState<TextDescription[]>([]);
 
-    return (
-        <div className="TextsPage">
-            <TextHeader/>
-            <NoTexts/>
-        </div>
-    )
+    React.useEffect(() => {
+        (async () => {
+            let textInfo = await axios.get('/texts');
+            setTextDescriptions(textInfo.data);
+        })();
+    }, []);
+
+
+
+    if (textDescriptions.length === 0) {
+
+        return (
+            <div className="textsPage">
+                <TextHeader/>
+                <NoTexts/>
+            </div>
+        );
+    } else {
+        return (
+            <div className="textsPage">
+                <TextHeader/>
+
+                <div className="textDescriptionCards">
+                    {textDescriptions.map((desc: TextDescription, index: number) => {
+                        return <div key={index}>
+                            {TextDescriptionCard(desc)}
+                        </div>
+                    })}
+                </div>
+            </div>
+        )
+    }
 }
