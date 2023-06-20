@@ -107,12 +107,17 @@ $main-font-family: 'Fenix', serif;
         }
 
         .textDescriptionCards {
-            .testDescriptionCard {
-                display: flex;
-            }
 
+            div {
+                .textDescriptionCard {
+                    margin-top: 10px;
+                    padding: 10px;
+                    @include border($main-font-color);
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
         }
     }
-
 
 }

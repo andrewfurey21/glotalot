@@ -1,9 +1,36 @@
-import "./styles/main.scss";
+import { useState } from 'react'
 
-export function AddText() {
+import "../styles/main.scss";
+import axios from 'axios'
+
+export function AddTextUI() {
+
+    let [titleValue, setTitleValue] = useState("");
+    let [textValue, setTextValue] = useState("");
+
+    let input =
+        <input placeholder="Title" value={titleValue} className="titleInput" onChange={e => setTitleValue(e.target.value)}></input>;
+    let textArea =
+        <textarea className="textArea" value={textValue} onChange={e => setTextValue(e.target.value)}></textarea>;
+
+    const upload = () => {
+        let data = {
+            title: titleValue,
+            text: textValue,
+        };
+        setTitleValue("");
+        setTextValue("");
+
+        axios.post("/upload", data);
+    }
+
     return (
         <div className="addText">
-            <textarea className="textArea"></textarea>
+            <div className="addTextButton" onClick={upload}>
+                Add Text
+            </div>
+            {input}
+            {textArea}
         </div>
     );
 }

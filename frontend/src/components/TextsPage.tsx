@@ -7,20 +7,18 @@ import { TextDescription, TextDescriptionCard } from "./TextDescription";
 
 
 export function TextsPage() {
-
     let [textDescriptions, setTextDescriptions] = React.useState<TextDescription[]>([]);
+
+    let [loaded, setLoaded] = React.useState(false);
 
     React.useEffect(() => {
         (async () => {
-            let textInfo = await axios.get('/texts');
+            let textInfo = await axios.get('/texts').then(() => setLoaded(true));
             setTextDescriptions(textInfo.data);
         })();
     }, []);
 
-
-
     if (textDescriptions.length === 0) {
-
         return (
             <div className="textsPage">
                 <TextHeader/>
@@ -31,7 +29,6 @@ export function TextsPage() {
         return (
             <div className="textsPage">
                 <TextHeader/>
-
                 <div className="textDescriptionCards">
                     {textDescriptions.map((desc: TextDescription, index: number) => {
                         return <div key={index}>

@@ -10,7 +10,7 @@ export function TextDescriptionCard(desc: TextDescription) {
     return (
         <div className="textDescriptionCard">
             <h2 className="title">{desc.title}</h2>
-            <h2 className="completionPerc">Read: {desc.completion_perc}</h2>
+            <h2 className="completionPerc">Read: {desc.completion_perc}%</h2>
             <h2 className="words">Words: {desc.words}</h2>
         </div>
     )
