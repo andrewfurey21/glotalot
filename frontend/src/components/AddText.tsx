@@ -21,7 +21,7 @@ export function AddTextUI() {
         setTitleValue("");
         setTextValue("");
 
-        axios.post("/upload", data);
+        axios.post("http://localhost:8000/upload", data);
     }
 
     return (

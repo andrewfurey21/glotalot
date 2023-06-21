@@ -8,12 +8,9 @@ import { TextDescription, TextDescriptionCard } from "./TextDescription";
 
 export function TextsPage() {
     let [textDescriptions, setTextDescriptions] = React.useState<TextDescription[]>([]);
-
-    let [loaded, setLoaded] = React.useState(false);
-
     React.useEffect(() => {
         (async () => {
-            let textInfo = await axios.get('/texts').then(() => setLoaded(true));
+            let textInfo = await axios.get('http://localhost:8000/texts');
             setTextDescriptions(textInfo.data);
         })();
     }, []);
