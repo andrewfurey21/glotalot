@@ -14,14 +14,16 @@ export function AddTextUI() {
         <textarea className="textArea" value={textValue} onChange={e => setTextValue(e.target.value)}></textarea>;
 
     const upload = () => {
-        let data = {
-            title: titleValue,
-            text: textValue,
-        };
-        setTitleValue("");
-        setTextValue("");
+        if (titleValue !== "" && textValue !== "") {
+            let data = {
+                title: titleValue,
+                text: textValue,
+            };
+            setTitleValue("");
+            setTextValue("");
 
-        axios.post("http://localhost:8000/upload", data);
+            axios.post("http://localhost:8000/upload", data);
+        }
     }
 
     return (

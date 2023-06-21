@@ -8,26 +8,32 @@ from constants import *
 from uuid import uuid4
 
 @dataclass
-class TextModel():
+class TextInfoModel():
     title: str
-    text: str
     completion_perc: float
     words: int
     id: str
+
+@dataclass
+class TextModel():
+    title: str
+    completion_perc: float
+    words: int
+    id: str
+    text: str
 
 def get_texts_from_db():
     client = MongoClient(NAME, PORT)
     db = client[TEXT_DATABASE_NAME]
     return db[TEXT_COLLECTION_NAME]
 
-def get_text_info():
+def get_texts_info():
     texts = get_texts_from_db()
     descriptions = []
 
     for text in texts.find():
         description = {
             "title": text["title"],
-            "text": text["text"],
             "completion_perc": text["completion_perc"],
             "words": text["words"],
             "id": text["id"]
@@ -37,7 +43,13 @@ def get_text_info():
 
     return descriptions
 
-def add_text(text: TextModel):
+def get_text(id: str):
+    texts = get_texts_from_db()
+    text = texts.find_one({"id": id})
+    text_model = TextModel(text["title"], text["completion_perc"], text["words"], text["id"], text["text"])
+    return text_model
+
+def add_text(text: TextInfoModel):
     texts = get_texts_from_db()
     data = asdict(text)
     texts.insert_one(data)
@@ -53,7 +65,9 @@ def update_text_info(title, completion_perc):
 
 
 if __name__ == "__main__":
-    arg = sys.argv[1]
-    if arg == "clear":
-        print("Clearing database.")
-        get_texts_from_db().drop()
+    for arg in sys.argv:
+        if arg == "clear":
+            print("Clearing database.")
+            get_texts_from_db().drop()
+    text = get_text("b26eb67db54e411daa51d5af87cc5321")
+    print(text)

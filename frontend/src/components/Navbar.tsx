@@ -1,4 +1,7 @@
 import "../styles/main.scss";
+
+import { Link } from 'react-router-dom';
+
 import BookIcon from "../assets/book.svg";
 import ChatIcon from "../assets/chat.svg";
 import VideoIcon from "../assets/video.svg";
@@ -9,19 +12,25 @@ export function Navbar() {
     return (
         <div className="navbar">
             <div className="logo">
-                <a href="#">glotalot</a>
+                <Link to="/">glotalot</Link>
             </div>
 
             <div className="activities">
-               <div>
-                   <img className="activitiesImage" src={BookIcon} alt="book"/>
-               </div>
-               <div>
-                   <img className="activitiesImage" src={VideoIcon} alt="video"/>
-               </div>
-               <div>
-                   <img className="activitiesImage" src={ChatIcon} alt="video"/>
-               </div>
+                <Link to="/">
+                    <div>
+                        <img className="activitiesImage" src={BookIcon} alt="book"/>
+                    </div>
+                </Link>
+                <Link to="/listen">
+                    <div>
+                        <img className="activitiesImage" src={VideoIcon} alt="video"/>
+                    </div>
+                </Link>
+                <Link to="/chat">
+                    <div>
+                        <img className="activitiesImage" src={ChatIcon} alt="video"/>
+                    </div>
+                </Link>
             </div>
 
             <div>
