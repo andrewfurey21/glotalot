@@ -29,7 +29,7 @@ class TextDescription(BaseModel):
 @app.post("/upload/")
 async def create_text(text_desc: TextDescription):
     length = len(text_desc.text.split(" "))
-    id = uuid.uuid4()
+    id = uuid.uuid4().hex
     data = TextModel(text_desc.title, text_desc.text, 0, length, id)
     add_text(data)
 
