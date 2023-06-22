@@ -6,6 +6,10 @@ from database import *
 import uuid
 from pydantic import BaseModel
 
+class TextDescription(BaseModel):
+    text: str
+    title: str
+
 middlewares = [
      Middleware(
          CORSMiddleware,
@@ -14,7 +18,6 @@ middlewares = [
          allow_headers=['*']
      )
  ]
-
 app = FastAPI(middleware=middlewares)
 
 
@@ -22,15 +25,11 @@ app = FastAPI(middleware=middlewares)
 async def root():
     return {}
 
-class TextDescription(BaseModel):
-    text: str
-    title: str
-
 @app.post("/upload/")
 async def create_text(text_desc: TextDescription):
     length = len(text_desc.text.split(" "))
     id = uuid.uuid4().hex
-    data = TextInfoModel(text_desc.title, text_desc.text, 0, length, id)
+    data = TextModel(text_desc.title, text_desc.text, 0, length, id)
     add_text(data)
 
 @app.get("/texts/")
