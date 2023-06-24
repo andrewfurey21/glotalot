@@ -3,6 +3,8 @@ from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 
 from database import *
+from translate import translate
+
 import uuid
 from pydantic import BaseModel
 
@@ -39,3 +41,7 @@ async def get_texts():
 @app.get("/read/")
 async def get_full_text(id: str=""):
     return get_text(id)
+
+@app.get("/translate/")
+async def translate_text(text: str=""):
+    return translate(text)
