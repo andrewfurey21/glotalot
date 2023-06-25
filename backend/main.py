@@ -42,6 +42,8 @@ async def get_texts():
 async def get_full_text(id: str=""):
     return get_text(id)
 
+
 @app.get("/translate/")
 async def translate_text(text: str=""):
+    print("text: " + text)
     return translate(text)
