@@ -15,7 +15,19 @@ class TextModel():
     words: int
     id: str
 
+@dataclass
+class SavedWordsModel:
+    word: str
+    translation: str
+    source_lang: str
+    target_lang: str
+
 def get_texts_from_db():
+    client = MongoClient(NAME, PORT)
+    db = client[TEXT_DATABASE_NAME]
+    return db[TEXT_COLLECTION_NAME]
+
+def get_saved_words_from_db():
     client = MongoClient(NAME, PORT)
     db = client[TEXT_DATABASE_NAME]
     return db[TEXT_COLLECTION_NAME]
@@ -52,6 +64,13 @@ def update_text_info(title, completion_perc):
     texts = get_texts_from_db()
     text.update_one({'title': title}, {"$set": {"title": title, "completion_perc": completion_perc}})
 
+def get_all_words():
+    saved_words = get_saved_words_from_db()
+
+def add_word(word: SavedWordsModel):
+    saved_words = get_saved_words_from_db()
+    data = asdict(word)
+    saved_words.insert_one(data)
 
 if __name__ == "__main__":
     if len(sys.argv) > 0:
