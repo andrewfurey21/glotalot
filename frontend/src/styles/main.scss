@@ -27,10 +27,15 @@ $main-font-family: 'Fenix', serif;
     background-color:$main-background-color;
 }
 
-.app {
+html {
+    overflow: hidden;
+}
 
-    margin-right: 20vw;
-    margin-left: 20vw;
+.app {
+    height: 100%;
+    margin-right: 15vw;
+    margin-left: 15vw;
+
 
     .navbar {
         $navbar-font-size: 45px;
@@ -120,4 +125,45 @@ $main-font-family: 'Fenix', serif;
         }
     }
 
+    .readDisplay {
+
+        height: 80vh;
+        display: flex;
+        .textDisplay {
+            overflow: auto;
+            width: 70%;
+            @include border($main-font-color);
+            .title {
+                font-size: 40px;
+                text-align: center;
+                padding: 10px;
+            }
+            .text {
+                padding: 20px;
+                line-height: 40px;
+                .textButton {
+                    font-size: 20px;
+                    &:hover {
+                        @include border($main-font-color);
+                    }
+                }
+            }
+        }
+        .wordBank {
+            overflow: auto;
+            width: 30%;
+            @include border($giants-orange);
+
+            .translationCard {
+                display: flex;
+                .word {
+                    flex: 1;
+                }
+
+                .translation {
+                    flex: 1;
+                }
+            }
+        }
+    }
 }
