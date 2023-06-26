@@ -45,5 +45,12 @@ async def get_full_text(id: str=""):
 
 @app.get("/translate/")
 async def translate_text(text: str=""):
-    print("text: " + text)
     return translate(text)
+
+@app.get("/add_word/")
+async def add(text: str="", source_lang: str="EN-GB", target_lang: str="IT"):
+#    translation = translate(text, source_lang=source_lang, target_lang=target_lang)
+    translation = translate(text)
+    word = SavedWordsModel(text, translation, source_lang, target_lang)
+    add_word(word)
+    return translation
