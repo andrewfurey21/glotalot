@@ -29,8 +29,8 @@ def get_texts_from_db():
 
 def get_saved_words_from_db():
     client = MongoClient(NAME, PORT)
-    db = client[TEXT_DATABASE_NAME]
-    return db[TEXT_COLLECTION_NAME]
+    db = client[SAVED_WORDS_DATABASE_NAME]
+    return db[SAVED_WORDS_COLLECTION_NAME]
 
 def get_texts_info():
     texts = get_texts_from_db()
