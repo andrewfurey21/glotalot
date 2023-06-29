@@ -8,6 +8,8 @@ from translate import translate
 import uuid
 from pydantic import BaseModel
 
+from chat import ask_question
+
 class TextDescription(BaseModel):
     text: str
     title: str
@@ -54,3 +56,7 @@ async def add(text: str="", source_lang: str="EN-GB", target_lang: str="IT"):
     word = SavedWordsModel(text, translation, source_lang, target_lang)
     add_word(word)
     return translation
+
+@app.get("/chat/")
+async def chat(question: str=""):
+    return ask_question(question)
